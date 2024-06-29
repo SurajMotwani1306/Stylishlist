@@ -3,6 +3,18 @@ import React, { useEffect, useState } from 'react'
 import CheckBox from '@react-native-community/checkbox';
 
 const BottomSheet = (props: any) => {
+
+    let arrayUpdateLoop: {
+        leftImageUrl: string; 
+        leftImageBackgroundColor: string; 
+        itemTitle: string; 
+        itemDescription: string;
+        // itemColorCircle: ['#EAEAEA', 'black', 'blue'],
+        onPress: any; 
+        rightSideText: string; 
+        rightSideTextColor: string;
+    }[] = [];
+
     //Manage States
     const [modalVisible, setModalVisible] = useState(false)
 
@@ -27,14 +39,6 @@ const BottomSheet = (props: any) => {
 
     const [rightSideText, setRightSideText] = useState(props.dataList[0].rightSideText)
     const [rightSideTextColor, setRightSideTextColor] = useState(props.dataList[0].rightSideTextColor)
-
-    // useEffect(() => {
-    //     setHeading(props.heading)
-    //     setHeadingColor(props.headingColor)
-    //     setHeadingSize(props.headingSize)
-    //     setleftImageUrlFlag(props.leftImageUrlFlag)
-    //     setbelowLine()
-    // }[])
 
     return (
         <View>
@@ -95,12 +99,10 @@ const BottomSheet = (props: any) => {
                                         value={leftImageUrlFlag}
                                         onValueChange={() => {
                                             setleftImageUrlFlag(!leftImageUrlFlag)
-                                            console.warn(leftImageUrlFlag)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setleftImageUrlFlag(!leftImageUrlFlag)
-                                        console.warn(leftImageUrlFlag)
                                     }}>
                                         leftImageUrlFlag
                                     </Text>
@@ -112,12 +114,10 @@ const BottomSheet = (props: any) => {
                                         value={belowLine}
                                         onValueChange={() => {
                                             setbelowLine(!belowLine)
-                                            console.warn(belowLine)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setbelowLine(!belowLine)
-                                        console.warn(belowLine)
                                     }}>
                                         belowLine
                                     </Text>
@@ -129,12 +129,10 @@ const BottomSheet = (props: any) => {
                                         value={itemBoxBorder}
                                         onValueChange={() => {
                                             setItemBoxBorder(!itemBoxBorder)
-                                            console.warn(itemBoxBorder)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setItemBoxBorder(!itemBoxBorder)
-                                        console.warn(itemBoxBorder)
                                     }}>
                                         itemBoxBorder
                                     </Text>
@@ -146,12 +144,10 @@ const BottomSheet = (props: any) => {
                                         value={itemBoxBorderLeftHighlight}
                                         onValueChange={() => {
                                             setItemBoxBorderLeftHighlight(!itemBoxBorderLeftHighlight)
-                                            console.warn(itemBoxBorderLeftHighlight)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setItemBoxBorderLeftHighlight(!itemBoxBorderLeftHighlight)
-                                        console.warn(itemBoxBorderLeftHighlight)
                                     }}>
                                         itemBoxBorderLeftHighlight
                                     </Text>
@@ -175,12 +171,10 @@ const BottomSheet = (props: any) => {
                                         value={rightArrowVisibility}
                                         onValueChange={() => {
                                             setRightArrowVisibility(!rightArrowVisibility)
-                                            console.warn(rightArrowVisibility)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setRightArrowVisibility(!rightArrowVisibility)
-                                        console.warn(rightArrowVisibility)
                                     }}>
                                         rightArrowVisibility
                                     </Text>
@@ -192,12 +186,10 @@ const BottomSheet = (props: any) => {
                                         value={rightSideTextFlag}
                                         onValueChange={() => {
                                             setRightSideTextFlag(!rightSideTextFlag)
-                                            console.warn(rightSideTextFlag)
                                         }}
                                     />
                                     <Text onPress={() => {
                                         setRightSideTextFlag(!rightSideTextFlag)
-                                        console.warn(rightSideTextFlag)
                                     }}>
                                         rightSideTextFlag
                                     </Text>
@@ -293,6 +285,23 @@ const BottomSheet = (props: any) => {
                                 style={[styles.button, styles.buttonClose]}
                                 onPress={() => {
                                     setModalVisible(!modalVisible)
+
+                                    {
+                                        // arrayUpdateLoop
+                                        props.dataList.map((el: any)=>(
+                                            arrayUpdateLoop.push({
+                                                leftImageUrl: leftImageUrl,
+                                                leftImageBackgroundColor: leftImageBackgroundColor,
+                                                itemTitle: itemTitle,
+                                                itemDescription: itemDescription,
+                                                // itemColorCircle: ['#EAEAEA', 'black', 'blue'],
+                                                onPress: el.pressEventTrigger,
+                                                rightSideText: rightSideText,
+                                                rightSideTextColor: rightSideTextColor
+                                            })
+                                        ))
+                                    }
+                                    
                                     props.updateProps({
                                         heading: heading,
                                         headingColor: headingColor, 
@@ -305,7 +314,7 @@ const BottomSheet = (props: any) => {
                                         rightArrowVisibility: rightArrowVisibility,
                                         rightSideTextFlag: rightSideTextFlag,
                                         rightSideIcon: rightSideIcon,
-                                        dataList: props.dataList,
+                                        dataList: arrayUpdateLoop,
                                         updateProps: props.updateProps
                                     })
                                 }}>
