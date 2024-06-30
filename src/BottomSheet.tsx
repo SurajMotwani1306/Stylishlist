@@ -13,7 +13,7 @@ const BottomSheet = (props: any) => {
         itemTitle: string; 
         itemDescription: string;
         itemColorCircle: any,
-        onPress: any; 
+        // onPress: any; 
         rightSideText: string; 
         rightSideTextColor: string;
     }[] = [];
@@ -89,6 +89,37 @@ const BottomSheet = (props: any) => {
         )
     }
 
+    // Methods for minimize duplication & increases re-usability
+    const returnSelectBoxViewWithText = (optionsArray: any, defaultValue: string, passMethod: any, textValue: string) => {
+        return (
+            <View style={[styles.checkboxStyle, (landscape && !tablet) ? { width: '50%' } : {}]}>
+                {returnSelectBox(optionsArray, defaultValue, passMethod)}
+                <Text style={styles.inputText}>
+                    {textValue}
+                </Text>
+            </View>
+        )
+    }
+
+    const returnCheckBoxViewWithText = (defaultValue: boolean, passMethod: any, textValue: string) => {
+        return (
+            <View style={[styles.checkboxStyle, (landscape && !tablet) ? { width: '50%' } : {}]}>
+                <CheckBox
+                    disabled={false}
+                    value={defaultValue}
+                    onValueChange={() => {
+                        passMethod(!defaultValue)
+                    }}
+                />
+                <Text style={styles.inputText} onPress={() => {
+                    passMethod(!defaultValue)
+                }}>
+                    { textValue }
+                </Text>
+            </View>
+        )
+    }
+
     // Method for identifying orientation & View
     let updateStylesBasedOnDimentions = () => {
         DeviceInfo.isLandscape().then((isLandscape) => {
@@ -118,183 +149,32 @@ const BottomSheet = (props: any) => {
 
                             <Text style={styles.element}>Parent Props</Text>
                             <View style={[styles.inputContainer, (landscape && !tablet) ? {flexDirection: 'row', flexWrap: 'wrap', alignContent: 'flex-start'} : {}]}>
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(headingOptions, heading, setHeading) }
-                                    <Text style={styles.inputText}>
-                                        heading
-                                    </Text>
-                                </View>
+                                { returnSelectBoxViewWithText(headingOptions, heading, setHeading, 'heading') }
+                                { returnSelectBoxViewWithText(headingColorOptions, headingColor, setHeadingColor, 'headingColor') }
+                                { returnSelectBoxViewWithText(headingSizeOptions, headingSize, setHeadingSize, 'headingSize') }
 
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(headingColorOptions, headingColor, setHeadingColor) }
-                                    <Text style={styles.inputText}>
-                                        headingColor
-                                    </Text>
-                                </View>
+                                { returnCheckBoxViewWithText(leftImageUrlFlag, setleftImageUrlFlag, 'leftImageUrlFlag') }
+                                { returnCheckBoxViewWithText(belowLine, setbelowLine, 'belowLine') }
+                                { returnCheckBoxViewWithText(itemBoxBorder, setItemBoxBorder, 'itemBoxBorder') }
+                                { returnCheckBoxViewWithText(itemBoxBorderLeftHighlight, setItemBoxBorderLeftHighlight, 'itemBoxBorderLeftHighlight') }
 
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(headingSizeOptions, headingSize, setHeadingSize) }
-                                    <Text style={styles.inputText}>
-                                        headingSize
-                                    </Text>
-                                </View>
+                                { returnSelectBoxViewWithText(itemBoxBorderLeftHighlightColorOptions, itemBoxBorderLeftHighlightColor, setItemBoxBorderLeftHighlightColor, 'itemBoxBorderLeftHighlightColor') }
 
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={leftImageUrlFlag}
-                                        onValueChange={() => {
-                                            setleftImageUrlFlag(!leftImageUrlFlag)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setleftImageUrlFlag(!leftImageUrlFlag)
-                                    }}>
-                                        leftImageUrlFlag
-                                    </Text>
-                                </View>
+                                { returnCheckBoxViewWithText(rightArrowVisibility, setRightArrowVisibility, 'rightArrowVisibility') }
+                                { returnCheckBoxViewWithText(rightSideTextFlag, setRightSideTextFlag, 'rightSideTextFlag') }
 
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={belowLine}
-                                        onValueChange={() => {
-                                            setbelowLine(!belowLine)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setbelowLine(!belowLine)
-                                    }}>
-                                        belowLine
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={itemBoxBorder}
-                                        onValueChange={() => {
-                                            setItemBoxBorder(!itemBoxBorder)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setItemBoxBorder(!itemBoxBorder)
-                                    }}>
-                                        itemBoxBorder
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={itemBoxBorderLeftHighlight}
-                                        onValueChange={() => {
-                                            setItemBoxBorderLeftHighlight(!itemBoxBorderLeftHighlight)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setItemBoxBorderLeftHighlight(!itemBoxBorderLeftHighlight)
-                                    }}>
-                                        itemBoxBorderLeftHighlight
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(itemBoxBorderLeftHighlightColorOptions, itemBoxBorderLeftHighlightColor, setItemBoxBorderLeftHighlightColor) }
-                                    <Text style={styles.inputText}>
-                                        itemBoxBorderLeftHighlightColor
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={rightArrowVisibility}
-                                        onValueChange={() => {
-                                            setRightArrowVisibility(!rightArrowVisibility)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setRightArrowVisibility(!rightArrowVisibility)
-                                    }}>
-                                        rightArrowVisibility
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    <CheckBox
-                                        disabled={false}
-                                        value={rightSideTextFlag}
-                                        onValueChange={() => {
-                                            setRightSideTextFlag(!rightSideTextFlag)
-                                        }}
-                                    />
-                                    <Text style={styles.inputText} onPress={() => {
-                                        setRightSideTextFlag(!rightSideTextFlag)
-                                    }}>
-                                        rightSideTextFlag
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(rightSideIconOptions, rightSideIcon, setRightSideIcon) }
-                                    <Text style={styles.inputText}>
-                                        rightSideIcon url
-                                    </Text>
-                                </View>
-                                
+                                { returnSelectBoxViewWithText(rightSideIconOptions, rightSideIcon, setRightSideIcon, 'rightSideIcon url') }
                             </View>
 
                             <Text style={styles.element}>Item Props</Text>
                             <View style={[styles.inputContainer, (landscape && !tablet) ? {flexDirection: 'row', flexWrap: 'wrap', alignContent: 'flex-start'} : {}]}>
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(leftImageUrlOptions, leftImageUrl, setLeftImageUrl) }
-                                    <Text style={styles.inputText}>
-                                        leftImageUrl url
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(leftImageBackgroundColorOptions, leftImageBackgroundColor, setLeftImageBackgroundColor) }
-                                    <Text style={styles.inputText}>
-                                        leftImageBackgroundColor
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(itemTitleOptions, itemTitle, setItemTitle) }
-                                    <Text style={styles.inputText}>
-                                        itemTitle
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(itemDescriptionOptions, itemDescription, setItemDescription) }
-                                    <Text style={styles.inputText}>
-                                        itemDescription
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(itemColorCircleOptions, itemColorCircle, setItemColorCircle) }
-                                    <Text style={styles.inputText}>
-                                        itemColorCircle
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(rightSideTextOptions, rightSideText, setRightSideText) }
-                                    <Text style={styles.inputText}>
-                                        rightSideText
-                                    </Text>
-                                </View>
-
-                                <View style={[styles.checkboxStyle, (landscape && !tablet) ? {width: '50%'} : {}]}>
-                                    { returnSelectBox(rightSideTextColorOptions, rightSideTextColor, setRightSideTextColor) }
-                                    <Text style={styles.inputText}>
-                                        rightSideTextColor
-                                    </Text>
-                                </View>
+                                { returnSelectBoxViewWithText(leftImageUrlOptions, leftImageUrl, setLeftImageUrl, 'leftImageUrl') }
+                                { returnSelectBoxViewWithText(leftImageBackgroundColorOptions, leftImageBackgroundColor, setLeftImageBackgroundColor, 'leftImageBackgroundColor') }
+                                { returnSelectBoxViewWithText(itemTitleOptions, itemTitle, setItemTitle, 'itemTitle') }
+                                { returnSelectBoxViewWithText(itemDescriptionOptions, itemDescription, setItemDescription, 'itemDescription') }
+                                { returnSelectBoxViewWithText(itemColorCircleOptions, itemColorCircle, setItemColorCircle, 'itemColorCircle') }
+                                { returnSelectBoxViewWithText(rightSideTextOptions, rightSideText, setRightSideText, 'rightSideText') }
+                                { returnSelectBoxViewWithText(rightSideTextColorOptions, rightSideTextColor, setRightSideTextColor, 'rightSideTextColor') }
                             </View>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
@@ -310,7 +190,7 @@ const BottomSheet = (props: any) => {
                                                 itemTitle: itemTitle,
                                                 itemDescription: itemDescription,
                                                 itemColorCircle: itemColorCircle,
-                                                onPress: el.pressEventTrigger,
+                                                // onPress: el.pressEventTrigger,
                                                 rightSideText: rightSideText,
                                                 rightSideTextColor: rightSideTextColor
                                             })
@@ -333,7 +213,7 @@ const BottomSheet = (props: any) => {
                                         updateProps: props.updateProps
                                     })
                                 }}>
-                                <Text style={styles.textStyle}>Update</Text>
+                                <Text style={styles.textStyle}>Update Props</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -345,7 +225,7 @@ const BottomSheet = (props: any) => {
                     style={styles.btnStyle}
                     onPress={() => setModalVisible(true)}
                 >
-                    <Text style={styles.textBtnStyle}>Update Props</Text>
+                    <Text style={styles.textBtnStyle}>Modify Props</Text>
                 </Pressable>
             </View>
 
