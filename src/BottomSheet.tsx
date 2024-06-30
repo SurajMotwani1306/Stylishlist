@@ -1,4 +1,4 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import DeviceInfo from 'react-native-device-info';
@@ -20,6 +20,7 @@ const BottomSheet = (props: any) => {
 
     //Manage States
     const [modalVisible, setModalVisible] = useState(false)
+    const [alertState, setAlertState] = useState(true)
 
     const [heading, setHeading] = useState(props.heading)
     const [headingColor, setHeadingColor] = useState(props.headingColor)
@@ -140,7 +141,8 @@ const BottomSheet = (props: any) => {
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                    // Alert.alert('Modal has been closed.');
+                    alertState ? Alert.alert('Note: Updating all list items with item props to make it in sync, & gives your better look & feel.') : null
+                    setAlertState(false);
                     setModalVisible(!modalVisible);
                 }}>
                 <ScrollView>
@@ -179,6 +181,8 @@ const BottomSheet = (props: any) => {
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
                                 onPress={() => {
+                                    alertState ? Alert.alert('Note: Updating all list items with item props to make it in sync, & gives your better look & feel.') : null
+                                    setAlertState(false);
                                     setModalVisible(!modalVisible)
                                     updateStylesBasedOnDimentions()
                                     {
