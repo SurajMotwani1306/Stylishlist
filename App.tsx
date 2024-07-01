@@ -16,7 +16,7 @@ const StylishLst = () => {
   
   let dataList = [
     {
-      leftImageUrl: 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png',
+      leftImageUrl: 'https://raw.githubusercontent.com/SurajMotwani1306/Stylishlist/main/assets/user.png',
       leftImageBackgroundColor: '#00D8B1',
       itemTitle: 'General',
       itemDescription: 'Lorem ipsum dolor sit amet',
@@ -27,7 +27,7 @@ const StylishLst = () => {
       rightSideTextColor: 'blue'
     },
     {
-      leftImageUrl: 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png',
+      leftImageUrl: 'https://raw.githubusercontent.com/SurajMotwani1306/Stylishlist/main/assets/user.png',
       leftImageBackgroundColor: '#00D8B1',
       itemTitle: 'Privacy & security',
       itemDescription: 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet',
@@ -38,7 +38,7 @@ const StylishLst = () => {
       rightSideTextColor: 'blue'
     },
     {
-      leftImageUrl: 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png',
+      leftImageUrl: 'https://raw.githubusercontent.com/SurajMotwani1306/Stylishlist/main/assets/user.png',
       leftImageBackgroundColor: '#00D8B1',
       itemTitle: 'Notification',
       itemDescription: 'Lorem ipsum dolor sit amet',
@@ -49,7 +49,7 @@ const StylishLst = () => {
       rightSideTextColor: 'blue'
     },
     {
-      leftImageUrl: 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png',
+      leftImageUrl: 'https://raw.githubusercontent.com/SurajMotwani1306/Stylishlist/main/assets/user.png',
       leftImageBackgroundColor: '#00D8B1',
       itemTitle: 'Account',
       itemDescription: 'Lorem ipsum dolor sit amet',
@@ -73,7 +73,7 @@ const StylishLst = () => {
     itemBoxBorderLeftHighlightColor: 'blue',
     rightArrowVisibility: true,
     rightSideTextFlag: true,
-    rightSideIcon: 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png',
+    rightSideIcon: 'https://raw.githubusercontent.com/SurajMotwani1306/Stylishlist/main/assets/add-icon.png',
     dataList: dataList,
     updateProps: updateProps
   });
