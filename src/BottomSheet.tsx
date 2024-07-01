@@ -52,7 +52,7 @@ const BottomSheet = (props: any) => {
     const headingSizeOptions = [10,12,14,16,18,20,22,24,26,28,30];
     const itemBoxBorderLeftHighlightColorOptions = ['black', 'grey', 'blue', 'cyan', 'green', 'orange', 'red'];
     const rightSideIconOptions = ['https://cdn-icons-png.flaticon.com/256/3001/3001785.png', 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png'];
-    const leftImageUrlOptions = ['https://cdn-icons-png.flaticon.com/256/3001/3001785.png', 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png'];
+    const leftImageUrlOptions = ['https://drive.google.com/file/d/146VwlFh_CB9tYRU9YwPfuRG5bNM6I7K7/view','https://cdn-icons-png.flaticon.com/256/3001/3001785.png', 'https://cdn-icons-png.flaticon.com/256/3001/3001785.png'];
     const leftImageBackgroundColorOptions = ['black', 'blue', '#00D8B1', '#CFCFCF'];
     const itemTitleOptions = ['General', 'Privacy & security', 'Notification', 'Account'];
     const itemDescriptionOptions = ['Lorem ipsum', '', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet'];
